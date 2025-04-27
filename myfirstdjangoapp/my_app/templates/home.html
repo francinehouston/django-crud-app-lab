@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Music Library{% endblock %}
+
+{% block nav_links %}
+    <div class="nav-links">
+        <a href="{% url 'my_app:song_index' %}">Songs</a>
+        <a href="{% url 'my_app:album_index' %}">Albums</a>
+        <a href="{% url 'my_app:artist_index' %}">Artists</a>
+    </div>
+{% endblock %}
+
+{% block content %}
+<div class="welcome-container">
+    <h1>Welcome to the Music Library</h1>
+    <p>Explore your favorite songs, albums, and artists.</p>
+</div>
+{% endblock %}

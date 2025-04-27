@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ artist.name }} - Details{% endblock %}
+
+{% block nav_links %}
+    <div class="nav-links">
+        <a href="{% url 'my_app:home' %}">Home</a>
+        <a href="{% url 'my_app:artist_index' %}">Back to Artists</a>
+        <a href="{% url 'my_app:artist_update' artist.pk %}">Edit</a>
+        <a href="{% url 'my_app:artist_delete' artist.pk %}">Delete</a>
+    </div>
+{% endblock %}
+
+{% block content %}
+<div class="artist-details">
+    <h1>{{ artist.name }}</h1>
+    
+    <div class="detail-section">
+        <p><strong>Bio:</strong></p>
+        <p>{{ artist.bio }}</p>
+    </div>
+
+    <div class="detail-section">
+        <h2>Albums</h2>
+        {% if artist.album_set.all %}
+            <ul class="album-list">
+                {% for album in artist.album_set.all %}
+                    <li>
+                        <a href="{% url 'my_app:album_detail' album.pk %}">{{ album.title }}</a>
+                        ({{ album.release_date|date:"Y" }})
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No albums available.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %} 

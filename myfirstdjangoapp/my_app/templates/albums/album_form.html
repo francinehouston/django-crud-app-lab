@@ -1,0 +1,16 @@
+{% extends 'base_form.html' %}
+
+{% block title %}{{ action }} Album{% endblock %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}  <!-- This will render all fields including cover_image -->
+    <button type="submit">Save Album</button>
+</form>
+
+{% block nav_links %}
+    <a href="{% url 'my_app:album_index' %}">Back to Albums</a>
+{% endblock %}
+
+{% block form_title %}{{ action }} Album{% endblock %}
+
+{% block submit_text %}{{ action }}{% endblock %} 

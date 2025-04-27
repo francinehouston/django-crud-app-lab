@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Artists</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    <div class="nav-links">
+        <a href="{% url 'my_app:home' %}">Home</a>
+        <a href="{% url 'my_app:artist_create' %}">Add New Artist</a>
+    </div>
+
+    <h1>Artists</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Bio</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for artist in artists %}
+            <tr>
+                <td>{{ artist.name }}</td>
+                <td>{{ artist.bio|truncatewords:20 }}</td>
+                <td class="action-links">
+                    <a href="{% url 'my_app:artist_detail' artist.pk %}">View</a>
+                    <a href="{% url 'my_app:artist_update' artist.pk %}">Edit</a>
+                    <a href="{% url 'my_app:artist_delete' artist.pk %}">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3" class="empty-state">No artists available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html> 

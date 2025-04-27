@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+</head>
+<body>
+    <div class="nav-links">
+        <a href="{% url 'my_app:home' %}">Home</a>
+        {% block nav_links %}{% endblock %}
+    </div>
+
+    <h1 class="form-title">{% block form_title %}{% endblock %}</h1>
+    
+    <form method="POST" enctype="multipart/form-data" class="form-container">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="submit-button">{% block submit_text %}Submit{% endblock %}</button>
+    </form>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message {% if message.tags %}{{ message.tags }}{% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+</body>
+</html> 

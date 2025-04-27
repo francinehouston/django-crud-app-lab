@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Song</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/confirm_delete.css' %}">
+</head>
+<body>
+    <div class="nav-links">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'song_index' %}">Back to Songs</a>
+    </div>
+
+    <h1 class="confirmation-title">Delete Song</h1>
+    
+    <div class="confirmation-box">
+        <p>Are you sure you want to delete "{{ song.title }}"?</p>
+        
+        <form method="post">
+            {% csrf_token %}
+            <div class="button-group">
+                <button type="submit" class="confirmation-button delete-button">Delete</button>
+                <a href="{% url 'song_index' %}" class="confirmation-button cancel-button">Cancel</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html> 

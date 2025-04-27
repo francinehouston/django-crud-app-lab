@@ -1,0 +1,16 @@
+{% extends 'base_form.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/form.css'%}"/>
+{% endblock %}
+
+{% block title %}{{ action }} Artist{% endblock %}
+
+{% block nav_links %}
+    <a href="{% url 'my_app:artist_index' %}">Back to Artists</a>
+{% endblock %}
+
+{% block form_title %}{{ action }} Artist{% endblock %}
+
+{% block submit_text %}{{ action }}{% endblock %} 

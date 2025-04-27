@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ album.title }} - Details</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+</head>
+<body>
+    <div class="nav-links">
+        <a href="{% url 'my_app:home' %}">Home</a>
+        <a href="{% url 'my_app:album_index' %}">Back to Albums</a>
+        <a href="{% url 'my_app:album_update' album.pk %}">Edit</a>
+        <a href="{% url 'my_app:album_delete' album.pk %}">Delete</a>
+    </div>
+
+    <h1>{{ album.title }}</h1>
+    
+    <div class="album-details">
+        <div class="cover-image-container">
+            {% if album.cover_image %}
+            <img src="{{ album.cover_image.url }}" alt="{{ album.title }}" class="cover-image">
+            {% else %}
+            <div class="cover-image placeholder"></div>
+            {% endif %}
+        </div>
+        <div class="album-info">
+            <p><strong>Artist:</strong> {{ album.artist.name }}</p>
+            <p><strong>Release Date:</strong> {{ album.release_date|date:"F j, Y" }}</p>
+        </div>
+    </div>
+
+    <div class="songs-section">
+        <h2>Songs</h2>
+        {% if album.song_set.all %}
+        <ul class="songs-list">
+            {% for song in album.song_set.all %}
+            <li>
+                <a href="{% url 'song_detail' song.pk %}">{{ song.title }}</a>
+                <span class="song-duration">{{ song.duration }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p class="empty-state">No songs available for this album.</p>
+        {% endif %}
+    </div>
+</body>
+</html> 

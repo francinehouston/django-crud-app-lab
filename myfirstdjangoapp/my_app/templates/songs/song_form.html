@@ -1,0 +1,66 @@
+{% extends 'base_form.html' %}
+{% load static %}
+
+{% block title %}{{ action }} Song{% endblock %}
+
+{% block form_title %}{{ action }} Song{% endblock %}
+
+{% block submit_text %}{{ action }}{% endblock %}
+
+{% block extra_head %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const artistSelect = document.querySelector('#id_artist');
+    const newArtistInput = document.querySelector('#id_new_artist_name');
+
+    // Hide new artist input when an existing artist is selected
+    artistSelect.addEventListener('change', function() {
+        if (this.value) {
+            newArtistInput.style.display = 'none';
+        } else {
+            newArtistInput.style.display = 'block';
+        }
+    });
+    
+    // Hide artist select when typing in new artist name
+    newArtistInput.addEventListener('input', function() {
+        if (this.value) {
+            artistSelect.style.display = 'none';
+        } else {
+            artistSelect.style.display = 'block';
+        }
+    });
+});
+</script>
+{% endblock %}
+
+{% block form_content %}
+<div class="form-group">
+    <label for="id_title">Title:</label>
+    {{ form.title }}
+</div>
+
+<div class="form-group">
+    <label for="id_artist">Artist:</label>
+    {{ form.artist }}
+    {{ form.new_artist_name }}
+</div>
+
+<div class="form-group">
+    <label for="id_new_album_name">Album Name:</label>
+    {{ form.new_album_name }}
+</div>
+
+<div class="form-group">
+    <label for="id_duration">Duration:</label>
+    <div class="duration-inputs">
+        {{ form.duration_minutes }}
+        {{ form.duration_seconds }}
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="id_audio_file">Audio File:</label>
+    {{ form.audio_file }}
+</div>
+{% endblock %} 

@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Songs</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    <div class="nav-links">
+        <a href="{% url 'my_app:home' %}">Home</a>
+        <a href="{% url 'my_app:song_create' %}">Add New Song</a>
+    </div>
+
+    <h1>Songs</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Album</th>
+                <th>Duration</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for song in songs %}
+            <tr>
+                <td>{{ song.title }}</td>
+                <td>{{ song.album.title }}</td>
+                <td>{{ song.duration }}</td>
+                <td class="action-links">
+                    <a href="{% url 'my_app:song_detail' song.pk %}">View</a>
+                    <a href="{% url 'my_app:song_update' song.pk %}">Edit</a>
+                    <a href="{% url 'my_app:song_delete' song.pk %}">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="empty-state">No songs available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html> 

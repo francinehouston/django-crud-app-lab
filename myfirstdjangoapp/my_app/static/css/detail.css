@@ -1,0 +1,138 @@
+/* Detail page styles */
+
+/* Detail container */
+.song-details,
+.album-details,
+.artist-details {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+/* Album details specific */
+.album-details {
+    display: flex;
+    gap: 20px;
+}
+
+.cover-image-container {
+    flex-shrink: 0;
+}
+
+.cover-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.cover-image.placeholder {
+    background-color: #ddd;
+}
+
+.album-info {
+    flex: 1;
+}
+
+/* Artist details specific */
+.artist-details p {
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.albums-section {
+    margin-top: 30px;
+}
+
+.albums-list {
+    list-style: none;
+    padding: 0;
+}
+
+.albums-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.albums-list li:last-child {
+    border-bottom: none;
+}
+
+.albums-list a {
+    text-decoration: none;
+    color: #333;
+}
+
+.albums-list a:hover {
+    color: #666;
+}
+
+/* Detail paragraphs */
+.song-details p,
+.album-details p,
+.artist-details p {
+    margin: 10px 0;
+}
+
+/* Songs section */
+.songs-section {
+    margin-top: 30px;
+}
+
+.songs-list {
+    list-style: none;
+    padding: 0;
+}
+
+.songs-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.songs-list li:last-child {
+    border-bottom: none;
+}
+
+.song-duration {
+    color: #666;
+}
+
+/* Media players */
+.audio-player,
+.image-preview {
+    margin-top: 20px;
+}
+
+.audio-player audio {
+    width: 100%;
+}
+
+.image-preview img {
+    max-width: 300px;
+    border-radius: 5px;
+}
+
+/* Action buttons */
+.detail-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.detail-actions a {
+    text-decoration: none;
+    color: #333;
+    padding: 8px 16px;
+    border: 1px solid #333;
+    border-radius: 5px;
+}
+
+.detail-actions a:hover {
+    background-color: #333;
+    color: white;
+}
+

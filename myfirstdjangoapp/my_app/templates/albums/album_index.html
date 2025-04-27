@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Albums</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    <div class="nav-links">
+        <a href="{% url 'my_app:home' %}">Home</a>
+        <a href="{% url 'my_app:album_create' %}">Add New Album</a>
+    </div>
+
+    <h1>Albums</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Cover</th>
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Release Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for album in albums %}
+            <tr>
+                <td>
+                    {% if album.cover_image %}
+                    <img src="{{ album.cover_image.url }}" alt="{{ album.title }}" class="cover-image">
+                    {% else %}
+                    <div class="cover-image placeholder"></div>
+                    {% endif %}
+                </td>
+                <td>{{ album.title }}</td>
+                <td>{{ album.artist.name }}</td>
+                <td>{{ album.release_date|date:"Y" }}</td>
+                <td class="action-links">
+                    <a href="{% url 'my_app:album_detail' album.pk %}">View</a>
+                    <a href="{% url 'my_app:album_update' album.pk %}">Edit</a>
+                    <a href="{% url 'my_app:album_delete' album.pk %}">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="empty-state">No albums available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html> 
