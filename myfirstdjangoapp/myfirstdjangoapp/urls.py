@@ -22,6 +22,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('my_app.urls')),# Mount the app's routes at the root URL
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
 # This serves media files (like uploaded songs) during development
 if settings.DEBUG:

@@ -1,12 +1,27 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from .models import Song, Album, Artist
+from .models import Song, Album, Artist,Profile
 from .forms import SongForm, AlbumForm, ArtistForm
 from datetime import date, timedelta
+from django.views.generic.edit import CreateView
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.decorators import login_required
 
 
-def home(request):
-    return render(request, 'home.html')
+# Other imports above
+from django.views.generic import ListView, DetailView
+# Add the two imports below
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+
+# Other code below
+
+
+class Home(LoginView):
+    template_name= 'home.html'
+
+# def home(request):
+#     return render(request, 'home.html')
 
 # Song Views
 def song_index(request):
@@ -251,3 +266,38 @@ def update_artist(request, pk):
     else:
         form = ArtistForm(instance=artist)
     return render(request, 'artists/artist_form.html', {'form': form, 'action': 'Update'})
+
+def signup(request):
+    error_message = ''
+    if request.method == 'POST':
+        # This is how to create a 'user' form object
+        # that includes the data from the browser
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            # This will add the user to the database
+            user = form.save()
+            # This is how we log a user in
+            login(request, user)
+            return redirect('cat-index')
+    else:
+        error_message = 'Invalid sign up - try again'
+    # A bad POST or a GET request, so render signup.html with an empty form
+    
+    # return render(
+    #     request, 
+    #     'signup.html',
+    #     {'form': form, 'error_message': error_message}
+    # )
+
+
+class ProfileCreate(CreateView):
+    model = Profile
+    fields = ['bio', 'profile_picture']
+    
+    def form_invalid(self, form):
+        form.instance.user = self.request.user
+        return super().form_invalid(form)
+        
+    
+    
+    

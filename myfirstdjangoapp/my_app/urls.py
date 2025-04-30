@@ -1,11 +1,14 @@
 from django.urls import path
 from . import views
 
+
 app_name = 'my_app'
 
 urlpatterns = [
     # Home
-    path('', views.home, name='home'),
+    # path('', views.home, name='home'),
+    path('', views.Home.as_view(), name='home'),
+
 
     # Artist URLs
     path('artists/', views.artist_index, name='artist_index'),
@@ -27,5 +30,8 @@ urlpatterns = [
     path('songs/create/', views.song_create, name='song_create'),
     path('songs/<int:pk>/update/', views.song_update, name='song_update'),
     path('songs/<int:pk>/delete/', views.song_delete, name='song_delete'),
+    path('accounts/signup/', views.signup, name='signup'),
+    
+
 ]
 

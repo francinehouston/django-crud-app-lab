@@ -4,16 +4,45 @@
 {% block title %}Music Library{% endblock %}
 
 {% block nav_links %}
-    <div class="nav-links">
-        <a href="{% url 'my_app:song_index' %}">Songs</a>
-        <a href="{% url 'my_app:album_index' %}">Albums</a>
-        <a href="{% url 'my_app:artist_index' %}">Artists</a>
-    </div>
-{% endblock %}
+    {% comment %} <div class="nav-links">
+
+        <ul>
+        {% if user.is_authenticated%}
+        <li><a href="{% url 'my_app:song_index' %}">Songs</a></li>
+        <li><a href="{% url 'my_app:album_index' %}">Albums</a></li>
+        <li><a href="{% url 'my_app:artist_index' %}">Artists</a></li>
+        {% else %}
+       <li><a href="{% url 'my_app:login'%}">Login</a></li>
+
+
+        </ul>
+    </div> {% endcomment %}
+
+   
+{% if not user.is_authenticated %}
+  <section>
+    <form action="{% url 'home' %}" method="post" class="login">
+      <h1>Login</h1>
+      {% csrf_token %} {{ form.as_p }}
+      <input type="hidden" name="next" value="{{ next }}" />
+      <button type="submit" class="btn submit">Login</button>
+    </form>
+  </section>
+{% endif %}
+
 
 {% block content %}
 <div class="welcome-container">
     <h1>Welcome to the Music Library</h1>
     <p>Explore your favorite songs, albums, and artists.</p>
 </div>
+<section>
+    <form action="{% url 'home' %}" method="post" class="login">
+      <h1>Login</h1>
+      {% csrf_token %} {{ form.as_p }}
+      <input type="hidden" name="next" value="{{ next }}" />
+      <button type="submit" class="btn submit">Login</button>
+    </form>
+  </section>
+
 {% endblock %}

@@ -12,8 +12,32 @@
 </head>
 <body>
     {% block nav_links %}{% endblock %}
+    <header class="header">
+        <div class="logo">
+            <a href="{% url 'my_app:home' %}">Music Library</a>
+        </div>
+        <nav class="nav-links">
+            <ul>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'my_app:song_index' %}">Songs</a></li>
+                    <li><a href="{% url 'my_app:album_index' %}">Albums</a></li>
+                    <li><a href="{% url 'my_app:artist_index' %}">Artists</a></li>
+
+                    <form id="logout-form" method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit">Log out</button>
+                      </form>
+                    </li>
+
+                {% else %}
+                    <li><a href="{% url 'my_app:login' %}">Login</a></li>
+                    <li><a href="{% url 'my_app:signup'%}">Sign Up</a></li>
+                {% endif %}
+            </ul>
+        </nav>
     
     <main class="main-content">
+
         {% block content %}{% endblock %}
     </main>
 </body>
