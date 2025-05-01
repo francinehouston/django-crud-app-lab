@@ -100,16 +100,19 @@ th, td {
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+    color:#333
 }
 
 th {
-    background-color: #f5f5f5;
+    background-color: blueviolet;
 }
 
 thead {
     background-color: rgba(255, 255, 255, 0.05); /* Darker header */
     color: #bbb;
 }
+
+
 /* Action links */
 .action-links {
     display: flex;

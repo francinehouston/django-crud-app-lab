@@ -71,7 +71,7 @@ body {
 
 .nav-links li a {
     display: block; /* Make the entire link area clickable */
-    color: #2b59c4; /* Light text color */
+    color: #2b59c4; 
     text-decoration: none;
     padding: 8px 15px;
     border-radius: 3px;
@@ -80,7 +80,7 @@ body {
 
 .nav-links li a:hover {
     background-color: rgba(255, 255, 255, 0.1); /* Slightly lighter background on hover */
-    color: #fff;
+    color: #a215aa;
 }
 /* Headings */
 h1, h2 {
