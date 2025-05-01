@@ -3,7 +3,7 @@
 
 {% block title %}Music Library{% endblock %}
 
-{% block nav_links %}
+{% block nav_links %}{% endblock %}
     {% comment %} <div class="nav-links">
 
         <ul>
@@ -18,10 +18,10 @@
         </ul>
     </div> {% endcomment %}
 
-   
+{% block content %}
 {% if not user.is_authenticated %}
   <section>
-    <form action="{% url 'home' %}" method="post" class="login">
+    <form  method="post" class="login">
       <h1>Login</h1>
       {% csrf_token %} {{ form.as_p }}
       <input type="hidden" name="next" value="{{ next }}" />
@@ -31,18 +31,13 @@
 {% endif %}
 
 
-{% block content %}
+
+
+
 <div class="welcome-container">
     <h1>Welcome to the Music Library</h1>
     <p>Explore your favorite songs, albums, and artists.</p>
 </div>
-<section>
-    <form action="{% url 'home' %}" method="post" class="login">
-      <h1>Login</h1>
-      {% csrf_token %} {{ form.as_p }}
-      <input type="hidden" name="next" value="{{ next }}" />
-      <button type="submit" class="btn submit">Login</button>
-    </form>
-  </section>
+
 
 {% endblock %}

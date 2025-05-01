@@ -27,10 +27,10 @@
                         {% csrf_token %}
                         <button type="submit">Log out</button>
                       </form>
-                    </li>
+                    </li> 
 
                 {% else %}
-                    <li><a href="{% url 'my_app:login' %}">Login</a></li>
+                    <li><a href="{% url 'my_app:home' %}">Login</a></li>
                     <li><a href="{% url 'my_app:signup'%}">Sign Up</a></li>
                 {% endif %}
             </ul>

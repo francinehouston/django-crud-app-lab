@@ -5,7 +5,19 @@ body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
     background: linear-gradient(to right, #2b5876, #4e4376);
-    color: white;
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+}
+
+.h1 { 
+    text-align: left;
+    font-size: 2rem;
+    color: #eee;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-left: 20px;
+
 }
 
 .main-content {
@@ -19,30 +31,37 @@ body {
     justify-content: center;
     align-items: center;
     padding: 1rem;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(255,255,255,0.05);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
+    border-radius: 5px;
 }
 
 .nav-links a {
     margin: 0 1rem;
     padding: 0.5rem 1rem;
     text-decoration: none;
-    color: white;
+    color: #dddd;
     font-weight: 500;
     transition: color 0.3s ease;
+    transition: background-color 0.3s;
+    background-color: rgba(0, 0, 0, 0.3);
+
 }
 
 .nav-links a:hover {
-    color: #ffcc00;
+    /* color: #ffcc00; */
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
 }
 
 /* Headings */
 h1, h2 {
     color: #333;
+   
 }
 
 /* Home page specific */

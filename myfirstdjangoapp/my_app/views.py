@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from .models import Song, Album, Artist,Profile
+from .models import Song, Album, Artist, Profile
 from .forms import SongForm, AlbumForm, ArtistForm
 from datetime import date, timedelta
 from django.views.generic.edit import CreateView
@@ -278,11 +278,14 @@ def signup(request):
             user = form.save()
             # This is how we log a user in
             login(request, user)
-            return redirect('cat-index')
-    else:
-        error_message = 'Invalid sign up - try again'
+            return redirect('my_app:home')
+        else:
+            error_message = 'Invalid sign up - try again'
     # A bad POST or a GET request, so render signup.html with an empty form
-    
+    form = UserCreationForm()
+    context = {'form': form, 'error_message': error_message}
+    return render(request, 'signup.html', context)
+    # Same as: 
     # return render(
     #     request, 
     #     'signup.html',
@@ -298,6 +301,8 @@ class ProfileCreate(CreateView):
         form.instance.user = self.request.user
         return super().form_invalid(form)
         
-    
+
+
+ 
     
     

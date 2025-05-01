@@ -1,2 +1,44 @@
-<!DOCTYPE html>
-<
+<!--templates/base.html-->
+{% extends "base.html" %}
+{% block title %}Song List{% endblock %}
+
+{% block content %}
+    <!-- Search Form -->
+    <form method="get" style="margin: 20px 0;">
+        <input type="text" name="q" placeholder="Search by artist..." value="{{ search_query }}">
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- Music List -->
+    {% for song in page_obj %}
+        <div class="song-card">
+            <h3>{{ song.title }} - {{ song.artist }}</h3>
+            {% if song.album_art %}
+                <img src="{{ song.album_art.url }}" alt="Album Art" width="200">
+            {% endif %}
+            {% if song.audio_file %}
+                <audio controls>
+                    <source src="{{ song.audio_file.url }}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            {% endif %}
+        </div>
+    {% empty %}
+        <p>No songs found.</p>
+    {% endfor %}
+
+    <!-- Pagination -->
+    <div class="pagination">
+        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+        <div>
+            {% if page_obj.has_previous %}
+                <a href="?q={{ search_query }}&page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+            {% if page_obj.has_next %}
+                <a href="?q={{ search_query }}&page={{ page_obj.next_page_number }}">Next</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+    

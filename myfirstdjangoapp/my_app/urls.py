@@ -31,7 +31,7 @@ urlpatterns = [
     path('songs/<int:pk>/update/', views.song_update, name='song_update'),
     path('songs/<int:pk>/delete/', views.song_delete, name='song_delete'),
     path('accounts/signup/', views.signup, name='signup'),
-    
+    path('accounts/login', views.signup, name='login'),
 
 ]
 

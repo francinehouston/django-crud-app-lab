@@ -4,13 +4,15 @@
 .song-details,
 .album-details,
 .artist-details {
-    background-color: #f5f5f5;
+    background-color:#f5f5f5 ;
     padding: 20px;
     border-radius: 5px;
     margin-top: 20px;
 }
 
-/* Album details specific */
+
+/* 
+Album details specific */
 .album-details {
     display: flex;
     gap: 20px;
@@ -33,6 +35,9 @@
 
 .album-info {
     flex: 1;
+    color: #ffffff;
+   
+    font-weight: 500;
 }
 
 /* Artist details specific */
