@@ -78,7 +78,7 @@ Album details specific */
 .album-details p,
 .artist-details p {
     margin: 10px 0;
-    color: #333;
+    color: hotpink;
 }
 
 /* Songs section */
