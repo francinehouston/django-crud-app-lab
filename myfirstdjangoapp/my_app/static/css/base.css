@@ -58,6 +58,30 @@ body {
     color: #fff;
 }
 
+.nav-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: right; /* Align items to the right */
+}
+
+.nav-links li {
+    margin-bottom: 10px; /* Add spacing between list items */
+}
+
+.nav-links li a {
+    display: block; /* Make the entire link area clickable */
+    color: #2b59c4; /* Light text color */
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+}
+
+.nav-links li a:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly lighter background on hover */
+    color: #fff;
+}
 /* Headings */
 h1, h2 {
     color: #333;
